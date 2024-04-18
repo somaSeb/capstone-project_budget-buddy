@@ -6,7 +6,7 @@ export default function PaymentConfirmation() {
   const { status } = router.query;
 
   return (
-    <div>
+    <>
       <HeadingWrapper>
         <StyledHeading>Order Confirmation</StyledHeading>
       </HeadingWrapper>
@@ -24,6 +24,6 @@ export default function PaymentConfirmation() {
         )}
       </Main>
       <Navbar />
-    </div>
+    </>
   );
 }
