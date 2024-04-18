@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { StyledHeading, Main, HeadingWrapper } from "@/styles";
 import Navbar from "@/components/Nav/Nav";
-export default function paymentConfirmation() {
+export default function PaymentConfirmation() {
   const router = useRouter();
   const { status } = router.query;
 
