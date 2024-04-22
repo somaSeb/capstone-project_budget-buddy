@@ -73,3 +73,9 @@ export const PlusIcon = styled(IconBase)`
     content: "key";
   }
 `;
+
+export const ProfileIcon = styled(IconBase)`
+  &:before {
+    content: "manage_accounts";
+  }
+`;

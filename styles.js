@@ -15,6 +15,14 @@ export default createGlobalStyle`
   --red-color: #D32F2F;
   --icon-color:#b393d3;
 }
+
+.dark {
+    --primary-color: #1a1a1a;
+    --secondary-color: #8b5cf6;
+    --lightgreen-color: #34d399;
+    --red-color: #ef4444;
+    --icon-color: #c4b5fd;
+  }
   
   body {
     font-family: 'Montserrat', sans-serif;

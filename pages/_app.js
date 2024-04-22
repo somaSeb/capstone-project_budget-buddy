@@ -1,5 +1,6 @@
 import GlobalStyle from "../styles";
 import useSWR, { mutate } from "swr";
+import { ThemeProvider } from "next-themes";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -42,13 +43,15 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <GlobalStyle />
-      <Component
-        {...pageProps}
-        transactions={transactions}
-        onAddTransaction={handleAddTransaction}
-        onDeleteTransaction={handleDeleteTransaction}
-      />
+      <ThemeProvider attribute="class">
+        <GlobalStyle />
+        <Component
+          {...pageProps}
+          transactions={transactions}
+          onAddTransaction={handleAddTransaction}
+          onDeleteTransaction={handleDeleteTransaction}
+        />
+      </ThemeProvider>
     </>
   );
 }
