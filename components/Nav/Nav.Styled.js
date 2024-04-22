@@ -17,6 +17,7 @@ export const NavbarWrapper = styled.div`
   right: 0;
   height: 50px;
   border-top: 2px solid var(--secondary-color);
+  z-index: 999;
 `;
 
 export const NavbarLink = styled.div`
