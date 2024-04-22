@@ -20,6 +20,20 @@ const ProductContainer = styled.div`
       var(--icon-color)
     )
     1;
+  position: relative; // Add this line to position the offer sign
+`;
+
+const OfferSign = styled.div`
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 1;
 `;
 
 const ProductTitle = styled.h1`
@@ -59,13 +73,49 @@ const CheckoutButton = styled(ActionButton)`
   margin: 15px 0;
 `;
 
+const FeaturesTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+
+  th,
+  td {
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--secondary-color);
+  }
+
+  th {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+  }
+
+  td {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .checkmark {
+    font-size: 1.5rem;
+    color: var(--lightgreen-color);
+  }
+`;
+
 export default function BudgetBuddy() {
   const [checkout, setCheckout] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const handleCheckout = (product) => {
+    setSelectedProduct(product);
+    setCheckout(true);
+  };
+
+  console.log(selectedProduct);
+  console.log("PayPalCheckout component:", PayPalCheckout);
   return (
     <Main>
       {checkout ? (
-        <PayPalCheckout />
+        <PayPalCheckout selectedProduct={selectedProduct} />
       ) : (
         <>
           <ProductContainer>
@@ -73,18 +123,71 @@ export default function BudgetBuddy() {
             <ProductDescription>
               Manage your finances with ease using our powerful budgeting tool.
             </ProductDescription>
-            <CheckoutButton onClick={() => setCheckout(true)}>
-              Free
-            </CheckoutButton>
+            <FeaturesTable>
+              <thead>
+                <tr>
+                  <th>Features</th>
+                  <th>BudgetBuddy free</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Basic Budgeting</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Expense Tracking</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </FeaturesTable>
+            <CheckoutButton>Free</CheckoutButton>
           </ProductContainer>
 
           <ProductContainer>
+            <OfferSign>Best offer</OfferSign>
             <ProductTitle>BudgetBuddy+</ProductTitle>
             <ProductDescription>
               Manage your finances with ease using our powerful budgeting tool.
             </ProductDescription>
+            <FeaturesTable>
+              <thead>
+                <tr>
+                  <th>Features</th>
+                  <th>BudgetBuddy+</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Basic Budgeting</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Expense Tracking</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Savings Goal Tracking</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </FeaturesTable>
             <ProductPrice>0.50 Sandbox Dollars</ProductPrice>
-            <CheckoutButton onClick={() => setCheckout(true)}>
+            <CheckoutButton
+              onClick={() =>
+                handleCheckout({ name: "BudgetBuddy+", price: "0.50" })
+              }
+            >
               Checkout
             </CheckoutButton>
           </ProductContainer>
@@ -94,8 +197,46 @@ export default function BudgetBuddy() {
             <ProductDescription>
               Manage your finances with ease using our powerful budgeting tool.
             </ProductDescription>
+            <FeaturesTable>
+              <thead>
+                <tr>
+                  <th>Features</th>
+                  <th>BudgetBuddy+ Pro</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Basic Budgeting</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Expense Tracking</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Savings Goal Tracking</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Advanced Analytics</td>
+                  <td>
+                    <span className="checkmark">&#10003;</span>
+                  </td>
+                </tr>
+              </tbody>
+            </FeaturesTable>
             <ProductPrice>1 Sandbox Dollar</ProductPrice>
-            <CheckoutButton onClick={() => setCheckout(true)}>
+            <CheckoutButton
+              onClick={() =>
+                handleCheckout({ name: "BudgetBuddy+ Pro", price: "1.00" })
+              }
+            >
               Checkout
             </CheckoutButton>
           </ProductContainer>
