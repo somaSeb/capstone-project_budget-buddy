@@ -30,7 +30,7 @@ Get a clear picture of your financial health with our visual dashboard. BudgetBu
 
 ## Roots
 
-- Based on a colaborative Project @[BudgetBuddy](https://github.com/SophiaZett/capstone-project_budget-buddy)
+Based on a colaborative Project [@BudgetBuddy](https://github.com/SophiaZett/capstone-project_budget-buddy)
 
 ## Local Development
 
