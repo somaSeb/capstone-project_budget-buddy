@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTheme } from "next-themes";
 import { Main, StyledHeading, HeadingWrapper } from "@/styles";
 import Navbar from "@/components/Nav/Nav";
+import Link from "next/link";
 
 export const ToggleButtonContainer = styled.div`
   display: flex;
@@ -46,6 +47,12 @@ export default function ProfilePage() {
           <StyledToggleButton onClick={handleThemeToggle}>
             {theme === "dark" ? "Turn off" : "Turn on"} Dark Mode
           </StyledToggleButton>
+        </ToggleButtonContainer>
+        <ToggleButtonContainer>
+          <Link href="/login">Sign In</Link>
+        </ToggleButtonContainer>
+        <ToggleButtonContainer>
+          <Link href="/signup">Sign Up</Link>
         </ToggleButtonContainer>
       </Main>
       <Navbar />

@@ -1,6 +1,8 @@
+import { SessionProvider } from "next-auth/react";
 import GlobalStyle from "../styles";
 import useSWR, { mutate } from "swr";
 import { ThemeProvider } from "next-themes";
+import AuthComponent from "components/AuthComponent/AuthComponent.js";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -43,15 +45,18 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <ThemeProvider attribute="class">
-        <GlobalStyle />
-        <Component
-          {...pageProps}
-          transactions={transactions}
-          onAddTransaction={handleAddTransaction}
-          onDeleteTransaction={handleDeleteTransaction}
-        />
-      </ThemeProvider>
+      <SessionProvider session={pageProps.session}>
+        <AuthComponent />
+        <ThemeProvider attribute="class">
+          <GlobalStyle />
+          <Component
+            {...pageProps}
+            transactions={transactions}
+            onAddTransaction={handleAddTransaction}
+            onDeleteTransaction={handleDeleteTransaction}
+          />
+        </ThemeProvider>
+      </SessionProvider>
     </>
   );
 }

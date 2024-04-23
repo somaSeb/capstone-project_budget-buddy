@@ -15,6 +15,40 @@ import {
 } from "@/styles";
 import FilterCategory from "@/components/FilterCategory/FilterCategory";
 import useSWR, { mutate } from "swr";
+import { getSession } from "next-auth/react";
+import { fetchTransactions } from "@/utils/api";
+
+// begin route prot
+export async function getServerSideProps(context) {
+  const session = await getSession(context);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  if (!session.user || !session.user.id) {
+    // If the session exists but the user ID is missing, return the transactions as an empty array
+    return {
+      props: {
+        transactions: [],
+      },
+    };
+  }
+
+  const transactions = await fetchTransactions(session.user.id);
+
+  return {
+    props: {
+      transactions,
+    },
+  };
+}
+// end route prot
 
 export default function HomePage({ onAddTransaction }) {
   const [transactionFilter, setTransactionFilter] = useState("all");
