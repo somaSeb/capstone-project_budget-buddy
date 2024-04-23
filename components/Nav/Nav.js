@@ -6,6 +6,7 @@ import {
   DashboardIcon,
   SavingsIcon,
   PlusIcon,
+  ProfileIcon,
   LinkStyles,
 } from "./Nav.Styled";
 
@@ -35,6 +36,12 @@ export default function Navbar() {
       <LinkStyles href="/budgetplus">
         <NavbarLink>
           <PlusIcon $active={router.pathname === "/budgetplus"} />
+        </NavbarLink>
+      </LinkStyles>
+
+      <LinkStyles href="/profile">
+        <NavbarLink>
+          <ProfileIcon $active={router.pathname === "/profile"} />
         </NavbarLink>
       </LinkStyles>
     </NavbarWrapper>

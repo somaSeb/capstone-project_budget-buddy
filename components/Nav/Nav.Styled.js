@@ -70,6 +70,12 @@ export const SavingsIcon = styled(IconBase)`
 
 export const PlusIcon = styled(IconBase)`
   &:before {
-    content: "key";
+    content: "lock_open";
+  }
+`;
+
+export const ProfileIcon = styled(IconBase)`
+  &:before {
+    content: "manage_accounts";
   }
 `;
