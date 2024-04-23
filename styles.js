@@ -14,6 +14,8 @@ export default createGlobalStyle`
   --lightgreen-color: #008657;
   --red-color: #D32F2F;
   --icon-color:#b393d3;
+  --modal-backround: rgba(0, 0, 0, 0.6);
+  --modal-container-backround: white;
 }
 
 .dark {
@@ -22,6 +24,8 @@ export default createGlobalStyle`
     --lightgreen-color: #34d399;
     --red-color: #ef4444;
     --icon-color: #c4b5fd;
+    --modal-backround: rgba(255, 255, 255, 0.6);
+    --modal-container-backround: #374151;
   }
   
   body {
