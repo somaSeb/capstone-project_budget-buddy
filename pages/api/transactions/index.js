@@ -1,5 +1,6 @@
 import Transaction from "@/db/models/Transaction";
-const connectToDatabase = require("../../../utils/mongodb");
+/* const connectToDatabase = require("../../../utils/mongodb"); */
+import { connectToDatabase } from "@/utils/database";
 import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
@@ -12,9 +13,11 @@ export default async function handler(req, res) {
         if (!session) {
           return res.status(401).json({ message: "Unauthorized" });
         }
-        const transactions = await Transaction.find({
-          userId: session.user.id,
-        });
+
+        const userId = req.body.userId; // Access userId from req.body
+        const transactions = await Transaction.find({ userId });
+        console.log(userId);
+
         res.status(200).json(transactions);
       } catch (error) {
         res.status(500).json({ message: error.message });

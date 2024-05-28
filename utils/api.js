@@ -1,9 +1,21 @@
-export async function fetchTransactions(userId) {
-  if (!userId) {
-    throw new Error("userId is required");
-  }
+export const fetchTransactions = async () => {
+  try {
+    const session = await getSession();
+    const userId = session?.user?.id;
 
-  const res = await fetch(`/api/transactions?userId=${userId}`);
-  const transactions = await res.json();
-  return transactions;
-}
+    // Send the userId as part of the request body or query
+    const response = await fetch(`/api/transactions`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

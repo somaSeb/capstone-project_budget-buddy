@@ -3,6 +3,7 @@ import GlobalStyle from "../styles";
 import useSWR, { mutate } from "swr";
 import { ThemeProvider } from "next-themes";
 import AuthComponent from "components/AuthComponent/AuthComponent.js";
+import { getSession } from "next-auth/react";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -10,10 +11,12 @@ export default function App({ Component, pageProps }) {
   const { data: transactions } = useSWR("/api/transactions", fetcher);
 
   async function handleAddTransaction(newTransaction) {
+    const session = await getSession();
     const response = await fetch("/api/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${session.user.accessToken}`,
       },
       body: JSON.stringify(newTransaction),
     });

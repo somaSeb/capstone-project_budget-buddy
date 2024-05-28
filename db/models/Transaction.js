@@ -7,6 +7,7 @@ const transactionSchema = new mongoose.Schema({
   category: String,
   description: String,
   internalGoalAllocation: String,
+  userId: String,
 });
 
 // mongoose date fix
